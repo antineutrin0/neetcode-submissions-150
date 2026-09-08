@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+
+        reverse(num1.begin(),num1.end());
+        reverse(num2.begin(),num2.end());
+
+        int minsize=min(num1.size(),num2.size());
+        string ansstr="";
+        int reminder=0;
+        for(int i=0;i<minsize;i++){
+           int a=num1[i]-'0';
+           int b=num2[i]-'0';
+           string ans=to_string((reminder+a+b)%10);
+           ansstr+=ans;
+           reminder=(reminder+a+b)/10;
+        }
+
+        if(num1.size()>num2.size()){
+             for(int i=minsize;i<num1.size();i++){
+           int a=num1[i]-'0';
+           string ans=to_string((reminder+a)%10);
+           ansstr+=ans;
+           reminder=(reminder+a)/10;
+        }
+        }
+        else if(num2.size()>num1.size()){
+             for(int i=minsize;i<num2.size();i++){
+           int b=num2[i]-'0';
+           string ans=to_string((reminder+b)%10);
+           ansstr+=ans;
+           reminder=(reminder+b)/10;
+        }
+        }
+
+            if(reminder>0)
+            ansstr+=to_string(reminder);
+        reverse(ansstr.begin(),ansstr.end());
+        return ansstr;
+    }
+};
