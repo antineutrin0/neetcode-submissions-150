@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    string longDivision(string& s, int d) {
+       string ans;
+        long long rem = 0;
+
+        for (char c : s) {
+            rem = rem * 10 + (c - '0');
+            int q = rem / d;
+            rem %= d;
+            if (!ans.empty() || q != 0) {
+                ans += char('0' + q);
+            }
+        }
+
+        if(ans.empty())
+        return "0";
+        else
+        return ans;
+        
+    }
+};
+
